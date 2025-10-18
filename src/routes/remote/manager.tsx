@@ -95,6 +95,13 @@ function RouteComponent() {
                       status: 'match',
                     },
                   })
+                  sendJsonMessage({
+                    type: 'publish',
+                    topic: 'field-1',
+                    message: {
+                      matchId: 'match-manual',
+                    },
+                  })
                   setTimeout(function () {
                     sendScreenUpdate()
                   }, 1500)
