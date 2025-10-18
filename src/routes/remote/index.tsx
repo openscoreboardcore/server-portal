@@ -12,7 +12,11 @@ function RouteComponent() {
       <h1 className="text-3xl font-bold mb-4 text-center">
         Kies een wedstrijd
       </h1>
-      <div className="flex flex-col gap-4"></div>
+      <div className="flex flex-col gap-4">
+        <Button asChild>
+          <a href="/remote/manager">Manual Veld 1</a>
+        </Button>
+      </div>
     </RightSideGlassPlane>
   )
 }

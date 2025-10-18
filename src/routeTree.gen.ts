@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RemoteIndexRouteImport } from './routes/remote/index'
+import { Route as RemoteManagerRouteImport } from './routes/remote/manager'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
 import { Route as DemoTableRouteImport } from './routes/demo/table'
 import { Route as DemoStoreRouteImport } from './routes/demo/store'
@@ -31,6 +32,11 @@ const IndexRoute = IndexRouteImport.update({
 const RemoteIndexRoute = RemoteIndexRouteImport.update({
   id: '/remote/',
   path: '/remote/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RemoteManagerRoute = RemoteManagerRouteImport.update({
+  id: '/remote/manager',
+  path: '/remote/manager',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/demo/store': typeof DemoStoreRoute
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/remote/manager': typeof RemoteManagerRoute
   '/remote': typeof RemoteIndexRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/demo/store': typeof DemoStoreRoute
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/remote/manager': typeof RemoteManagerRoute
   '/remote': typeof RemoteIndexRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/demo/store': typeof DemoStoreRoute
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/remote/manager': typeof RemoteManagerRoute
   '/remote/': typeof RemoteIndexRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/demo/store'
     | '/demo/table'
     | '/demo/tanstack-query'
+    | '/remote/manager'
     | '/remote'
     | '/demo/form/address'
     | '/demo/form/simple'
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/demo/store'
     | '/demo/table'
     | '/demo/tanstack-query'
+    | '/remote/manager'
     | '/remote'
     | '/demo/form/address'
     | '/demo/form/simple'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/demo/store'
     | '/demo/table'
     | '/demo/tanstack-query'
+    | '/remote/manager'
     | '/remote/'
     | '/demo/form/address'
     | '/demo/form/simple'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DemoRoute: typeof DemoRouteWithChildren
+  RemoteManagerRoute: typeof RemoteManagerRoute
   RemoteIndexRoute: typeof RemoteIndexRoute
 }
 
@@ -150,6 +163,13 @@ declare module '@tanstack/react-router' {
       path: '/remote'
       fullPath: '/remote'
       preLoaderRoute: typeof RemoteIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/remote/manager': {
+      id: '/remote/manager'
+      path: '/remote/manager'
+      fullPath: '/remote/manager'
+      preLoaderRoute: typeof RemoteManagerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/tanstack-query': {
@@ -211,6 +231,7 @@ const DemoRouteWithChildren = DemoRoute._addFileChildren(DemoRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DemoRoute: DemoRouteWithChildren,
+  RemoteManagerRoute: RemoteManagerRoute,
   RemoteIndexRoute: RemoteIndexRoute,
 }
 export const routeTree = rootRouteImport
