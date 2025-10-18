@@ -97,7 +97,7 @@ function RouteComponent() {
                   })
                   sendJsonMessage({
                     type: 'publish',
-                    topic: 'field-1',
+                    topic: 'field-veld1',
                     message: {
                       matchId: 'match-manual',
                     },
