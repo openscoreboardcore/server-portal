@@ -99,7 +99,7 @@ function RouteComponent() {
                     type: 'publish',
                     topic: 'field-veld1',
                     message: {
-                      matchId: 'match-manual',
+                      matchId: 'manual',
                     },
                   })
                   setTimeout(function () {
